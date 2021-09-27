@@ -1,0 +1,11 @@
+<h2>Ajouter un astronaute</h2>
+<form #astronaut (ngSubmit)="submit()" [formGroup]="astronautForm">
+  <label>
+    Nom :
+    <input type="text" formControlName="name" required="required">
+  </label>
+  <button type="submit">Ajouter</button>
+</form>
+<ul *ngIf="errors.length > 0">
+  <li *ngFor="let error of errors">{{error}}</li>
+</ul>
