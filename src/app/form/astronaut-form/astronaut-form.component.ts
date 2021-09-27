@@ -27,7 +27,6 @@ export class AstronautFormComponent implements OnInit {
     this.astronautService.newAstronaut(this.astronautForm.value).subscribe((response) => {
       this.refreshList.emit();
     }, error => {
-      console.log(error);
       this.errors = error.error;
     });
   }

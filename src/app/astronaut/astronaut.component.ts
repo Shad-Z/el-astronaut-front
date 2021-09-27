@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Astronaut} from '../models/astronaut';
 import {AstronautService} from '../service/astronaut.service';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-astronaut',
@@ -9,17 +10,15 @@ import {AstronautService} from '../service/astronaut.service';
 })
 export class AstronautComponent implements OnInit {
 
-  astronauts: Astronaut[] = [];
+  astronauts$: Observable<Astronaut[]> = of([]);
 
-  constructor(private astronautService: AstronautService) { }
+  constructor(private astronautService: AstronautService) {}
 
   ngOnInit(): void {
     this.getAstronauts();
   }
 
   getAstronauts(): void {
-    this.astronautService.getAstronauts().subscribe((astronauts) => {
-      this.astronauts = astronauts;
-    });
+    this.astronauts$ = this.astronautService.getAstronauts();
   }
 }
